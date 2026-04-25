@@ -50,7 +50,7 @@ The model achieves approximately **86% accuracy (R² score)**.
 3. Open browser:
    http://127.0.0.1:5000/
 
----
+
 
 ## 🔐 Authentication
 - Signup and login system implemented
@@ -58,7 +58,7 @@ The model achieves approximately **86% accuracy (R² score)**.
 
 
 
-## 🎯 Future Improvements
+# 🎯 Future Improvements
 - Add database for storing users
 - Improve model accuracy
 - Add interactive charts
