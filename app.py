@@ -44,6 +44,17 @@ def generate_chart(studytime=None, grade=None):
     return chart
 
 
+# Routes
+@app.route("/")
+def start():
+    # If user already logged in → go home
+    if "user" in session:
+        return redirect(url_for("homepage"))
+    
+    # If not logged in → go to signup
+    return redirect(url_for("signup"))
+
+
 # SIGNUP
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
