@@ -111,11 +111,11 @@ def homepage():
 @app.route("/predict", methods=["GET", "POST"])
 def predict():
 
-    # 🔴 If not signed up → go to signup
+    # If not signed up → go to signup
     if "signed_up" not in session:
         return redirect(url_for("signup"))
 
-    # 🔴 If signed up but not logged in → login
+    # If signed up but not logged in → login
     if "user" not in session:
         return redirect(url_for("login"))
 
