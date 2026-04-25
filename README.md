@@ -5,19 +5,19 @@ This project predicts student academic performance using machine learning to ena
 
 
 # Features
- - Student performance prediction
- - Risk classification (At Risk, Average, Good)
- - Data visualization (charts)
- - Login & Signup system
- - Landing page UI
+  - Student performance prediction
+  - Risk classification (At Risk, Average, Good)
+  - Data visualization (charts)
+  - Login & Signup system
+  - Landing page UI
 
 
 # Technologies Used
-- Python
-- Flask
-- Machine Learning (Scikit-learn)
-- Pandas, NumPy
-- Matplotlib
+   - Python
+ - Flask
+ - Machine Learning (Scikit-learn)
+ - Pandas, NumPy
+ - Matplotlib
 
 
 
