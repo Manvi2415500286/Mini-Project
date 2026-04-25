@@ -12,14 +12,14 @@ app.secret_key = "secret123"
  # Temporary user storage
 users = {}
 
-# Load model
+ # Load model
 model = joblib.load("student_model.pkl")
 
-# Accuracy (update from model.py output)
+ # Accuracy (update from model.py output)
 accuracy = 0.82
 
 
-# Chart function
+ # Chart function
 def generate_chart(studytime=None, grade=None):
     data = pd.read_csv("student-mat.csv", sep=";")
 
