@@ -50,7 +50,7 @@ The model achieves approximately **86% accuracy (R² score)**.
    python app.py
 
 3. Open browser:
-   http://127.0.0.1:5000/login
+   http://127.0.0.1:5000/
 
 ---
 
@@ -68,6 +68,6 @@ The model achieves approximately **86% accuracy (R² score)**.
 
 ---
 
-## 👥 Team Members
+# 👥 Team Members
 - Nidhi
 - Manvi
