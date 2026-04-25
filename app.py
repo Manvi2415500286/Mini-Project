@@ -9,7 +9,7 @@ from io import BytesIO
 app = Flask(__name__)
 app.secret_key = "secret123"
 
-# Temporary user storage
+ # Temporary user storage
 users = {}
 
 # Load model
