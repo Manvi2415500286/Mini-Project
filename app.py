@@ -71,6 +71,7 @@ def signup():
         else:
             users[username] = password
             success = "✅ Signup successful! Please login."
+            return redirect(url_for("login"))
 
     return render_template("signup.html", message=message, success=success)
 
@@ -85,7 +86,9 @@ def login():
 
         if username in users and users[username] == password:
             session["user"] = username
-            return redirect(url_for("homepage"))
+            session.permanent = False
+            
+            return redirect(url_for("home"))
         else:
             error = "Invalid Credentials"
 
@@ -110,7 +113,7 @@ def homepage():
 def home():
 
     if "user" not in session:
-        return redirect(url_for("login"))
+      return redirect(url_for("signup"))
 
     prediction = None
     status = None
