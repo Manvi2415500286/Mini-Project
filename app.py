@@ -49,7 +49,7 @@ def generate_chart(studytime=None, grade=None):
 def start():
     # If user already logged in → go home
     if "user" in session:
-        return redirect(url_for("homepage"))
+        return redirect(url_for("home.html"))
     
     # If not logged in → go to signup
     return redirect(url_for("signup"))
@@ -70,7 +70,8 @@ def signup():
             message = "⚠️ User already exists!"
         else:
             users[username] = password
-            success = "✅ Signup successful! Please login."
+            session["signed_up"] = True
+
             return redirect(url_for("login"))
 
     return render_template("signup.html", message=message, success=success)
@@ -86,9 +87,7 @@ def login():
 
         if username in users and users[username] == password:
             session["user"] = username
-            session.permanent = False
-            
-            return redirect(url_for("home"))
+            return redirect(url_for("predict"))
         else:
             error = "Invalid Credentials"
 
@@ -98,8 +97,8 @@ def login():
 # LOGOUT
 @app.route("/logout")
 def logout():
-    session.pop("user", None)
-    return redirect(url_for("login"))
+    session.clear()
+    return redirect(url_for("main"))
 
 
 # HOME PAGE
@@ -110,10 +109,15 @@ def homepage():
 
 # PREDICTION PAGE
 @app.route("/predict", methods=["GET", "POST"])
-def home():
+def predict():
 
+    # 🔴 If not signed up → go to signup
+    if "signed_up" not in session:
+        return redirect(url_for("signup"))
+
+    # 🔴 If signed up but not logged in → login
     if "user" not in session:
-      return redirect(url_for("signup"))
+        return redirect(url_for("login"))
 
     prediction = None
     status = None
