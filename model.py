@@ -54,5 +54,5 @@ for name, model in models.items():
 # Save best model
 joblib.dump(best_model, "student_model.pkl")
 
-print("\n✅ Best model saved successfully")
-print(f"🏆 Best Accuracy (R2 Score): {best_accuracy:.2f}")
+print("\n Best model saved successfully")
+print(f" Accuracy : {best_accuracy:.2f}")
