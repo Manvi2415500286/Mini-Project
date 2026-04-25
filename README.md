@@ -1,6 +1,6 @@
 # 🎓 AI Student Performance Predictor
 
-## 📌 Problem Statement
+# 📌 Problem Statement
 This project predicts student academic performance using machine learning to enable early academic intervention.
 
 ---
