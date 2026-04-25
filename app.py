@@ -7,14 +7,16 @@ import base64
 from io import BytesIO
 
 app = Flask(__name__)
-app.secret_key = "secret123"   # Required for session
+app.secret_key = "secret123"
 
-# Temporary user storage (for signup/login)
+# Temporary user storage
 users = {}
 
-# Load ML model
+# Load model
 model = joblib.load("student_model.pkl")
-accuracy = 0.86  
+
+# Accuracy (update from model.py output)
+accuracy = 0.82
 
 
 # Chart function
@@ -25,13 +27,12 @@ def generate_chart(studytime=None, grade=None):
     plt.scatter(data["studytime"], data["G3"], label="Existing Students")
 
     if studytime and grade:
-        plt.scatter(studytime, grade, color="red", s=100, label="Predicted Student")
+        plt.scatter(studytime, grade, color="red", s=100)
 
     plt.xlabel("Study Time")
     plt.ylabel("Final Grade")
     plt.title("Study Time vs Final Grade")
     plt.legend()
-    plt.grid(True, linestyle='--', alpha=0.5)
 
     img = BytesIO()
     plt.savefig(img, format="png")
@@ -43,34 +44,33 @@ def generate_chart(studytime=None, grade=None):
     return chart
 
 
-# SIGNUP ROUTE
+# SIGNUP
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     message = None
 
     if request.method == "POST":
-        username = request.form["username"].strip()
-        password = request.form["password"].strip()
+        username = request.form["username"]
+        password = request.form["password"]
 
         if username in users:
             message = "User already exists"
         else:
             users[username] = password
-            message = "Signup successful! Please login"
+            message = "Signup successful! Login now"
 
     return render_template("signup.html", message=message)
 
 
-# LOGIN ROUTE
+# LOGIN
 @app.route("/login", methods=["GET", "POST"])
 def login():
     error = None
 
     if request.method == "POST":
-        username = request.form["username"].strip()
-        password = request.form["password"].strip()
+        username = request.form["username"]
+        password = request.form["password"]
 
-        # Check user from signup
         if username in users and users[username] == password:
             session["user"] = username
             return redirect(url_for("homepage"))
@@ -87,17 +87,16 @@ def logout():
     return redirect(url_for("login"))
 
 
-# LANDING PAGE
+# HOME PAGE
 @app.route("/home")
 def homepage():
     return render_template("home.html")
 
 
-# PREDICTION PAGE (PROTECTED)
+# PREDICTION PAGE
 @app.route("/predict", methods=["GET", "POST"])
 def home():
 
-    # Restrict access
     if "user" not in session:
         return redirect(url_for("login"))
 
@@ -116,22 +115,24 @@ def home():
         absences = float(request.form["absences"])
         G1 = float(request.form["G1"])
         G2 = float(request.form["G2"])
+        health = float(request.form["health"])
+        freetime = float(request.form["freetime"])
+        goout = float(request.form["goout"])
 
-        features = np.array([[studytime, failures, absences, G1, G2]])
+        features = np.array([[studytime, failures, absences, G1, G2, health, freetime, goout]])
+
         result = model.predict(features)[0]
-
         prediction = round(result, 2)
 
-        # Status + suggestion
         if result < 10:
-            status = "⚠️ Student At Risk"
-            suggestion = "Focus more on studies and reduce absences."
+            status = "⚠️ At Risk"
+            suggestion = "Study more and reduce absences"
         elif result < 14:
-            status = "📘 Average Performance"
-            suggestion = "Improve consistency and practice daily."
+            status = "📘 Average"
+            suggestion = "Improve consistency"
         else:
-            status = "✅ Good Performance"
-            suggestion = "Keep up the good work!"
+            status = "✅ Good"
+            suggestion = "Keep it up"
 
         chart = generate_chart(studytime, prediction)
 
@@ -146,6 +147,5 @@ def home():
     )
 
 
-# RUN APP
 if __name__ == "__main__":
     app.run(debug=True)
