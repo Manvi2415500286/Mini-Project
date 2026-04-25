@@ -52,16 +52,16 @@ The model achieves approximately **86% accuracy (R² score)**.
 
 
 # Authentication
-- Signup and login system implemented
-- Only logged-in users can access prediction
+    - Signup and login system implemented
+    - Only logged-in users can access prediction
 
 
 
 # Future Improvements
-- Add database for storing users
-- Improve model accuracy
-- Add interactive charts
-- Deploy online
+   - Add database for storing users
+   - Improve model accuracy
+   - Add interactive charts
+   - Deploy online
 
 
 # 👥 Team Members
