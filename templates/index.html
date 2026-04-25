@@ -1,142 +1,111 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>AI Student Performance Dashboard</title>
+    <title>Student Predictor</title>
 
-<style>
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            color: white;
+            margin: 0;
+        }
 
-body{
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right,#667eea,#764ba2);
-    margin:0;
-    padding:0;
-}
+        h1 {
+            text-align: center;
+            padding: 20px;
+        }
 
-.header{
-    text-align:center;
-    color:white;
-    padding:20px;
-}
+        p {
+            text-align: center;
+        }
 
-.container{
-    display:flex;
-    justify-content:space-around;
-    padding:30px;
-}
+        .container {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+        }
 
-.card{
-    background:white;
-    width:45%;
-    padding:25px;
-    border-radius:12px;
-    box-shadow:0px 5px 15px rgba(0,0,0,0.2);
-}
+        .card {
+            background: white;
+            color: black;
+            padding: 20px;
+            border-radius: 15px;
+            width: 50%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
 
-input{
-    width:100%;
-    padding:10px;
-    margin:8px 0;
-    border-radius:6px;
-    border:1px solid #ccc;
-}
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
 
-button{
-    width:100%;
-    padding:12px;
-    background:#667eea;
-    color:white;
-    border:none;
-    border-radius:6px;
-    font-size:16px;
-    cursor:pointer;
-}
+        button {
+            background: #667eea;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            border-radius: 8px;
+            cursor: pointer;
+        }
 
-button:hover{
-    background:#5a67d8;
-}
-
-.result{
-    margin-top:20px;
-    padding:15px;
-    border-radius:8px;
-    background:#f2f2f2;
-}
-
-.chart{
-    text-align:center;
-}
-
-h3{
-    text-align:center;
-}
-
-</style>
-
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            background: #f0f0f0;
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="header">
-<h1>AI Student Performance Predictor</h1>
-<p>Early Academic Intervention System</p>
-</div>
+<h1>🎓 AI Student Performance Predictor</h1>
+<p>📌 Early Academic Intervention System</p>
 
 <div class="container">
 
-<!-- LEFT SIDE FORM -->
+    <!-- LEFT SIDE FORM -->
+    <div class="card">
+        <h2>📊 Student Predictor</h2>
 
-<div class="card">
+        <form method="POST">
 
-<h3>Student Predictor</h3>
+            <label>Study Time (1-4)</label>
+            <input type="number" name="studytime" min="1" max="4" required>
 
-<form method="POST">
+            <label>Failures</label>
+            <input type="number" name="failures" min="0" required>
 
-<label>Study Time (1-4)</label>
-<input type="number" name="studytime" required>
+            <label>Absences</label>
+            <input type="number" name="absences" min="0" required>
 
-<label>Failures</label>
-<input type="number" name="failures" required>
+            <label>G1 Grade</label>
+            <input type="number" name="G1" min="0" max="20" required>
 
-<label>Absences</label>
-<input type="number" name="absences" required>
+            <label>G2 Grade</label>
+            <input type="number" name="G2" min="0" max="20" required>
 
-<label>G1 Grade</label>
-<input type="number" name="G1" required>
+            <button type="submit">🔍 Predict</button>
+        </form>
 
-<label>G2 Grade</label>
-<input type="number" name="G2" required>
+        {% if submitted %}
+        <div class="result">
+            <h3>🎯 Predicted Grade: {{ prediction }}</h3>
+            <h4>Status: {{ status }}</h4>
+            <p>{{ suggestion }}</p>
+        </div>
+        {% endif %}
 
-<button type="submit">Predict Performance</button>
+    </div>
 
-</form>
-
-{% if submitted %}
-
-<div class="result">
-
-<h3>Predicted Grade: {{ prediction }}</h3>
-<h3>Status: {{ status }}</h3>
-
-</div>
-
-{% endif %}
-
-</div>
-
-
-<!-- RIGHT SIDE CHART -->
-
-<div class="card chart">
-
-<h3>Performance Chart</h3>
-
-{% if chart %}
-
-<img src="data:image/png;base64,{{ chart }}" width="100%">
-
-{% endif %}
-
-</div>
+    <!-- RIGHT SIDE CHART -->
+    <div class="card">
+        <h2>📈 Performance Chart</h2>
+        <img src="data:image/png;base64,{{ chart }}" width="100%">
+    </div>
 
 </div>
 

@@ -8,36 +8,29 @@ from io import BytesIO
 
 app = Flask(__name__)
 
-# Load trained model
+# Load model
 model = joblib.load("student_model.pkl")
 
-
-# Generate chart function
+# Chart function
 def generate_chart(studytime=None, grade=None):
-
     data = pd.read_csv("student-mat.csv", sep=";")
 
-    plt.figure()
-
-    # Existing dataset students
+    plt.figure(figsize=(8,5))
     plt.scatter(data["studytime"], data["G3"], label="Existing Students")
 
-    # New predicted student point
-    if studytime is not None and grade is not None:
+    if studytime and grade:
         plt.scatter(studytime, grade, color="red", s=100, label="Predicted Student")
 
     plt.xlabel("Study Time")
     plt.ylabel("Final Grade")
     plt.title("Study Time vs Final Grade")
-
     plt.legend()
+    plt.grid(True, linestyle='--', alpha=0.5)
 
     img = BytesIO()
     plt.savefig(img, format="png")
     img.seek(0)
-
     chart = base64.b64encode(img.getvalue()).decode()
-
     plt.close()
 
     return chart
@@ -45,16 +38,14 @@ def generate_chart(studytime=None, grade=None):
 
 @app.route("/", methods=["GET", "POST"])
 def home():
-
     prediction = None
     status = None
+    suggestion = None
     submitted = False
 
-    # Default chart
     chart = generate_chart()
 
     if request.method == "POST":
-
         submitted = True
 
         studytime = float(request.form["studytime"])
@@ -64,26 +55,28 @@ def home():
         G2 = float(request.form["G2"])
 
         features = np.array([[studytime, failures, absences, G1, G2]])
-
         result = model.predict(features)[0]
 
         prediction = round(result, 2)
 
-        # Risk detection
+        # Status + suggestion
         if result < 10:
-            status = "Student At Risk⚠️"
+            status = "⚠️ Student At Risk"
+            suggestion = "Focus more on studies and reduce absences."
         elif result < 14:
-            status = "Average Performance"
+            status = "📘 Average Performance"
+            suggestion = "Improve consistency and practice daily."
         else:
-            status = "Good Performance"
+            status = "✅ Good Performance"
+            suggestion = "Keep up the good work!"
 
-        # Update chart with entered student
         chart = generate_chart(studytime, prediction)
 
     return render_template(
         "index.html",
         prediction=prediction,
         status=status,
+        suggestion=suggestion,
         submitted=submitted,
         chart=chart
     )
