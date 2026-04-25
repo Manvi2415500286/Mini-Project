@@ -7,13 +7,16 @@ import base64
 from io import BytesIO
 
 app = Flask(__name__)
-app.secret_key = "secret123"   # 🔐 Required for login
+app.secret_key = "secret123"   # Required for session
 
-# Load model
+# Temporary user storage (for signup/login)
+users = {}
+
+# Load ML model
 model = joblib.load("student_model.pkl")
 
 
-# 📊 Chart function
+# Chart function
 def generate_chart(studytime=None, grade=None):
     data = pd.read_csv("student-mat.csv", sep=";")
 
@@ -39,43 +42,61 @@ def generate_chart(studytime=None, grade=None):
     return chart
 
 
-# 🔐 LOGIN ROUTE
+# SIGNUP ROUTE
+@app.route("/signup", methods=["GET", "POST"])
+def signup():
+    message = None
+
+    if request.method == "POST":
+        username = request.form["username"].strip()
+        password = request.form["password"].strip()
+
+        if username in users:
+            message = "User already exists"
+        else:
+            users[username] = password
+            message = "Signup successful! Please login"
+
+    return render_template("signup.html", message=message)
+
+
+# LOGIN ROUTE
 @app.route("/login", methods=["GET", "POST"])
 def login():
     error = None
 
     if request.method == "POST":
-        username = request.form["username"]
-        password = request.form["password"]
+        username = request.form["username"].strip()
+        password = request.form["password"].strip()
 
-        # Simple login
-        if username == "admin" and password == "1234":
+        # Check user from signup
+        if username in users and users[username] == password:
             session["user"] = username
-            return redirect(url_for("homepage"))   # ✅ redirect to landing page
+            return redirect(url_for("homepage"))
         else:
             error = "Invalid Credentials"
 
     return render_template("login.html", error=error)
 
 
-# 🚪 LOGOUT
+# LOGOUT
 @app.route("/logout")
 def logout():
     session.pop("user", None)
     return redirect(url_for("login"))
 
 
-# 🏠 LANDING PAGE
+# LANDING PAGE
 @app.route("/home")
 def homepage():
     return render_template("home.html")
 
 
-# 🤖 PREDICTION PAGE (PROTECTED)
+# PREDICTION PAGE (PROTECTED)
 @app.route("/predict", methods=["GET", "POST"])
 def home():
 
-    # 🔐 Restrict access
+    # Restrict access
     if "user" not in session:
         return redirect(url_for("login"))
 
@@ -123,6 +144,6 @@ def home():
     )
 
 
-# ▶ RUN APP
+# RUN APP
 if __name__ == "__main__":
     app.run(debug=True)
