@@ -14,10 +14,10 @@ This project predicts student academic performance using machine learning to ena
 
 # Technologies Used
    - Python
- - Flask
- - Machine Learning (Scikit-learn)
- - Pandas, NumPy
- - Matplotlib
+  - Flask
+  - Machine Learning (Scikit-learn)
+  - Pandas, NumPy
+  - Matplotlib
 
 
 
