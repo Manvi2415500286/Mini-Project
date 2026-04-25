@@ -4,6 +4,7 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_absolute_error
+from sklearn.metrics import r2_score
 import joblib
 
 # Load dataset
@@ -47,3 +48,8 @@ for name, model in models.items():
 joblib.dump(best_model, "student_model.pkl")
 
 print("Best model saved successfully")
+
+from sklearn.metrics import r2_score
+
+accuracy = r2_score(y_test, predictions)
+print("Model Accuracy:", accuracy)
