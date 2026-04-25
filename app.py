@@ -14,6 +14,7 @@ users = {}
 
 # Load ML model
 model = joblib.load("student_model.pkl")
+accuracy = 0.86  
 
 
 # Chart function
@@ -140,7 +141,8 @@ def home():
         status=status,
         suggestion=suggestion,
         submitted=submitted,
-        chart=chart
+        chart=chart,
+        accuracy=accuracy
     )
 
 
