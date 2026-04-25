@@ -44,7 +44,7 @@ def generate_chart(studytime=None, grade=None):
     return chart
 
 
-# Routes
+ # Routes
 @app.route("/")
 def start():
     # If user already logged in → go home
@@ -55,7 +55,7 @@ def start():
     return redirect(url_for("signup"))
 
 
-# SIGNUP
+ # SIGNUP
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     message = None
@@ -76,7 +76,7 @@ def signup():
 
     return render_template("signup.html", message=message, success=success)
 
-# LOGIN
+ # LOGIN
 @app.route("/login", methods=["GET", "POST"])
 def login():
     error = None
@@ -94,20 +94,20 @@ def login():
     return render_template("login.html", error=error)
 
 
-# LOGOUT
+ # LOGOUT
 @app.route("/logout")
 def logout():
     session.clear()
     return redirect(url_for("login.html"))
 
 
-# HOME PAGE
+ # HOME PAGE
 @app.route("/home")
 def homepage():
     return render_template("home.html")
 
 
-# PREDICTION PAGE
+ # PREDICTION PAGE
 @app.route("/predict", methods=["GET", "POST"])
 def predict():
 
