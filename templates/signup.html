@@ -54,7 +54,11 @@
     </form>
 
     {% if message %}
-        <p class="error">{{ message }}</p>
+         <p style="color:red;">{{ message }}</p>
+    {% endif %}
+
+    {% if success %}
+         <p style="color:green;">{{ success }}</p>
     {% endif %}
 
     <p>Already have account? <a href="/login">Login</a></p>

@@ -48,19 +48,20 @@ def generate_chart(studytime=None, grade=None):
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     message = None
+    success = None
 
     if request.method == "POST":
-        username = request.form["username"]
-        password = request.form["password"]
+        username = request.form["username"].strip()
+        password = request.form["password"].strip()
 
+        # 🔴 Check if user exists
         if username in users:
-            message = "User already exists"
+            message = "⚠️ User already exists!"
         else:
             users[username] = password
-            message = "Signup successful! Login now"
+            success = "✅ Signup successful! Please login."
 
-    return render_template("signup.html", message=message)
-
+    return render_template("signup.html", message=message, success=success)
 
 # LOGIN
 @app.route("/login", methods=["GET", "POST"])
