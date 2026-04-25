@@ -4,13 +4,12 @@
 This project predicts student academic performance using machine learning to enable early academic intervention.
 
 
-
 # Features
-- Student performance prediction
-- Risk classification (At Risk, Average, Good)
-- Data visualization (charts)
-- Login & Signup system
-- Landing page UI
+ - Student performance prediction
+ - Risk classification (At Risk, Average, Good)
+ - Data visualization (charts)
+ - Login & Signup system
+ - Landing page UI
 
 
 # Technologies Used
