@@ -64,6 +64,6 @@ The model achieves approximately **86% accuracy (R² score)**.
    - Deploy online
 
 
-# 👥 Team Members
-- Nidhi
-- Manvi
+# Team Members
+   - Nidhi
+   - Manvi
