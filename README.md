@@ -3,7 +3,7 @@
 # 📌 Problem Statement
 This project predicts student academic performance using machine learning to enable early academic intervention.
 
----
+
 
 ## 🚀 Features
 - Student performance prediction
@@ -12,7 +12,6 @@ This project predicts student academic performance using machine learning to ena
 - Login & Signup system
 - Landing page UI
 
----
 
 ## 🧠 Technologies Used
 - Python
@@ -21,7 +20,7 @@ This project predicts student academic performance using machine learning to ena
 - Pandas, NumPy
 - Matplotlib
 
----
+
 
 ## 📊 Model Details
 - Algorithm: Random Forest / Linear Regression
@@ -34,12 +33,11 @@ This project predicts student academic performance using machine learning to ena
 - Output:
   - Predicted Final Grade (G3)
 
----
+
 
 ## 📈 Model Accuracy
 The model achieves approximately **86% accuracy (R² score)**.
 
----
 
 ## 🖥️ How to Run
 
@@ -58,7 +56,7 @@ The model achieves approximately **86% accuracy (R² score)**.
 - Signup and login system implemented
 - Only logged-in users can access prediction
 
----
+
 
 ## 🎯 Future Improvements
 - Add database for storing users
@@ -66,7 +64,6 @@ The model achieves approximately **86% accuracy (R² score)**.
 - Add interactive charts
 - Deploy online
 
----
 
 # 👥 Team Members
 - Nidhi
