@@ -5,7 +5,7 @@ This project predicts student academic performance using machine learning to ena
 
 
 
-## 🚀 Features
+# 🚀 Features
 - Student performance prediction
 - Risk classification (At Risk, Average, Good)
 - Data visualization (charts)
@@ -13,7 +13,7 @@ This project predicts student academic performance using machine learning to ena
 - Landing page UI
 
 
-## 🧠 Technologies Used
+# 🧠 Technologies Used
 - Python
 - Flask
 - Machine Learning (Scikit-learn)
@@ -22,7 +22,7 @@ This project predicts student academic performance using machine learning to ena
 
 
 
-## 📊 Model Details
+# 📊 Model Details
 - Algorithm: Random Forest / Linear Regression
 - Inputs:
   - Study Time
@@ -35,11 +35,11 @@ This project predicts student academic performance using machine learning to ena
 
 
 
-## 📈 Model Accuracy
+# 📈 Model Accuracy
 The model achieves approximately **86% accuracy (R² score)**.
 
 
-## 🖥️ How to Run
+# 🖥️ How to Run
 
 1. Install dependencies:
    pip install flask numpy pandas matplotlib scikit-learn joblib
@@ -52,7 +52,7 @@ The model achieves approximately **86% accuracy (R² score)**.
 
 
 
-## 🔐 Authentication
+# 🔐 Authentication
 - Signup and login system implemented
 - Only logged-in users can access prediction
 
