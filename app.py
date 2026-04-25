@@ -65,7 +65,7 @@ def signup():
         username = request.form["username"].strip()
         password = request.form["password"].strip()
 
-        # 🔴 Check if user exists
+        # Check if user exists
         if username in users:
             message = "⚠️ User already exists!"
         else:
