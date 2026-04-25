@@ -5,95 +5,119 @@
 
     <style>
         body {
+            margin: 0;
             font-family: Arial;
             background: linear-gradient(to right, #667eea, #764ba2);
             color: white;
-            margin: 0;
         }
 
-        h1 {
-            text-align: center;
-            padding: 20px;
+        /* HEADER */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 30px;
         }
 
-        p {
-            text-align: center;
-        }
-
+        /* MAIN CONTAINER */
         .container {
             display: flex;
             gap: 20px;
             padding: 20px;
         }
 
-        .card {
+        /* LEFT SIDE (FORM) */
+        .form-box {
+            width: 50%;
             background: white;
             color: black;
             padding: 20px;
             border-radius: 15px;
+        }
+
+        /* RIGHT SIDE (CHART) */
+        .chart-box {
             width: 50%;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            background: white;
+            color: black;
+            padding: 20px;
+            border-radius: 15px;
         }
 
         input {
             width: 100%;
             padding: 10px;
-            margin-bottom: 10px;
+            margin: 8px 0;
         }
 
         button {
+            width: 100%;
+            padding: 12px;
             background: #667eea;
             color: white;
-            padding: 10px;
             border: none;
-            width: 100%;
             border-radius: 8px;
             cursor: pointer;
         }
 
         .result {
             margin-top: 15px;
-            padding: 15px;
-            border-radius: 10px;
+            padding: 10px;
             background: #f0f0f0;
+            border-radius: 10px;
         }
     </style>
 </head>
 
 <body>
 
-<div style="text-align:right;">
-    <a href="/home">Home</a> |
-    <a href="/logout">Logout</a>
+<!-- HEADER -->
+<div class="header">
+    <div>Welcome, {{ session['user'] }}</div>
+    <div>
+        <a href="/home" style="color:white;">Home</a> |
+        <a href="/logout" style="color:white;">Logout</a>
+    </div>
 </div>
 
-<p>Welcome, {{ session['user'] }}</p>
+<!-- MAIN CONTENT -->
+<div class="container">
 
-<h2>Student Predictor</h2>
+    <!-- LEFT SIDE -->
+    <div class="form-box">
+        <h2>Student Predictor</h2>
 
-<form method="POST">
-    <input type="number" name="studytime" placeholder="Study Time" required>
-    <input type="number" name="failures" placeholder="Failures" required>
-    <input type="number" name="absences" placeholder="Absences" required>
-    <input type="number" name="G1" placeholder="G1" required>
-    <input type="number" name="G2" placeholder="G2" required>
+        <form method="POST">
+            <input type="number" name="studytime" placeholder="Study Time (1-4)" required>
+            <input type="number" name="failures" placeholder="Failures" required>
+            <input type="number" name="absences" placeholder="Absences" required>
+            <input type="number" name="G1" placeholder="G1" required>
+            <input type="number" name="G2" placeholder="G2" required>
 
-    <input type="number" name="health" placeholder="Health (1-5)" required>
-    <input type="number" name="freetime" placeholder="Free Time (1-5)" required>
-    <input type="number" name="goout" placeholder="Going Out (1-5)" required>
+            <input type="number" name="health" placeholder="Health (1-5)" required>
+            <input type="number" name="freetime" placeholder="Free Time (1-5)" required>
+            <input type="number" name="goout" placeholder="Going Out (1-5)" required>
 
-    <button type="submit">Predict</button>
-</form>
+            <button type="submit">Predict</button>
+        </form>
 
-{% if submitted %}
-<h3>Prediction: {{ prediction }}</h3>
-<p>Status: {{ status }}</p>
-<p>{{ suggestion }}</p>
-<p>Accuracy: {{ accuracy }}</p>
-{% endif %}
+        {% if submitted %}
+        <div class="result">
+            <h3>Prediction: {{ prediction }}</h3>
+            <p>Status: {{ status }}</p>
+            <p>{{ suggestion }}</p>
+            <p><b>Accuracy:</b> {{ accuracy }}</p>
+        </div>
+        {% endif %}
 
-<img src="data:image/png;base64,{{ chart }}">
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="chart-box">
+        <h2>Performance Chart</h2>
+        <img src="data:image/png;base64,{{ chart }}" width="100%">
+    </div>
+
+</div>
+
 </body>
-
-
 </html>
