@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for, session
 import joblib
 import numpy as np
 import pandas as pd
@@ -7,11 +7,13 @@ import base64
 from io import BytesIO
 
 app = Flask(__name__)
+app.secret_key = "secret123"   # 🔐 Required for login
 
 # Load model
 model = joblib.load("student_model.pkl")
 
-# Chart function
+
+# 📊 Chart function
 def generate_chart(studytime=None, grade=None):
     data = pd.read_csv("student-mat.csv", sep=";")
 
@@ -30,14 +32,53 @@ def generate_chart(studytime=None, grade=None):
     img = BytesIO()
     plt.savefig(img, format="png")
     img.seek(0)
+
     chart = base64.b64encode(img.getvalue()).decode()
     plt.close()
 
     return chart
 
 
-@app.route("/", methods=["GET", "POST"])
+# 🔐 LOGIN ROUTE
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    error = None
+
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+
+        # Simple login
+        if username == "admin" and password == "1234":
+            session["user"] = username
+            return redirect(url_for("homepage"))   # ✅ redirect to landing page
+        else:
+            error = "Invalid Credentials"
+
+    return render_template("login.html", error=error)
+
+
+# 🚪 LOGOUT
+@app.route("/logout")
+def logout():
+    session.pop("user", None)
+    return redirect(url_for("login"))
+
+
+# 🏠 LANDING PAGE
+@app.route("/home")
+def homepage():
+    return render_template("home.html")
+
+
+# 🤖 PREDICTION PAGE (PROTECTED)
+@app.route("/predict", methods=["GET", "POST"])
 def home():
+
+    # 🔐 Restrict access
+    if "user" not in session:
+        return redirect(url_for("login"))
+
     prediction = None
     status = None
     suggestion = None
@@ -82,5 +123,6 @@ def home():
     )
 
 
+# ▶ RUN APP
 if __name__ == "__main__":
     app.run(debug=True)
