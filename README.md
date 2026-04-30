@@ -1,69 +1,98 @@
-# 🎓 AI Student Performance Predictor
+# 🎓 Student Performance Predictor
 
-#  Problem Statement
-This project predicts student academic performance using machine learning to enable early academic intervention.
+## 📌 Overview
 
+This project is a Machine Learning based web application built using Flask.
+It predicts student performance (final grade) based on study habits, past scores, and behavioral factors.
 
-# Features
-  - Student performance prediction
-  - Risk classification (At Risk, Average, Good)
-  - Data visualization (charts)
-  - Login & Signup system
-  - Landing page UI
+The system helps identify students who are at risk and provides suggestions for improvement.
 
+---
 
-# Technologies Used
-   - Python
-  - Flask
-  - Machine Learning (Scikit-learn)
-  - Pandas, NumPy
-  - Matplotlib
+## 🚀 Features
 
+* 🔐 User Authentication (Signup & Login)
+* 📊 Student Performance Prediction
+* 📈 Graph Visualization
+* ⚠️ Risk Classification (At Risk / Average / Good)
+* 💡 Suggestions for improvement
+* 🖥️ Simple and clean UI
 
+---
 
-# Model Details
-- Algorithm: Random Forest / Linear Regression
-- Inputs:
-  - Study Time
-  - Failures
-  - Absences
-  - G1, G2 Grades
+## 🛠️ Technologies Used
 
-- Output:
-  - Predicted Final Grade (G3)
+* Python (Flask)
+* Scikit-learn
+* Pandas & NumPy
+* Matplotlib
+* HTML & CSS
 
+---
 
+## ▶️ How to Run the Project
 
-# Model Accuracy
-The model achieves approximately **86% accuracy (R² score)**.
-
-
-# How to Run
-
-1. Install dependencies:
+1. Install required libraries:
    pip install flask numpy pandas matplotlib scikit-learn joblib
 
 2. Run the application:
    python app.py
 
-3. Open browser:
+3. Open in browser:
    http://127.0.0.1:5000/
 
+---
 
+## 📊 Model Details
 
-# Authentication
-    - Signup and login system implemented
-    - Only logged-in users can access prediction
+### Input Features:
 
+* Study Time
+* Failures
+* Absences
+* G1 (First Period Grade)
+* G2 (Second Period Grade)
+* Health
+* Free Time
+* Going Out
 
+### Output:
 
-# Future Improvements
-   - Add database for storing users
-   - Improve model accuracy
-   - Add interactive charts
-   - Deploy online
+* Predicted Final Grade (G3)
 
+---
 
-# Team Members
-   - Nidhi
-   - Manvi
+## 🎯 Purpose
+
+This project helps:
+
+* Teachers identify weak students early
+* Students improve their performance
+* Provide data-driven insights for education
+
+---
+
+## 📈 Output Example
+
+* Predicted Score
+* Performance Status (At Risk / Average / Good)
+* Suggestions for improvement
+* Graph visualization
+
+---
+
+## 👩‍💻 Contributors
+
+* Nidhi (Nidhi-AIML1)
+* Manvi
+
+---
+
+## 📌 Future Improvements
+
+* Add database (MySQL)
+* Improve UI design
+* Add more ML models
+* Deploy on cloud (Render / AWS)
+
+---
