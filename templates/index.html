@@ -34,43 +34,6 @@
             border-radius: 15px;
         }
 
-       
-
-       
-       
-
-        <form method="POST">
-            <input type="number" name="studytime" placeholder="Study Time (1-4)" required>
-            <input type="number" name="failures" placeholder="Failures" required>
-            <input type="number" name="absences" placeholder="Absences" required>
-            <input type="number" name="G1" placeholder="G1" required>
-            <input type="number" name="G2" placeholder="G2" required>
-
-            <input type="number" name="health" placeholder="Health (1-5)" required>
-            <input type="number" name="freetime" placeholder="Free Time (1-5)" required>
-            <input type="number" name="goout" placeholder="Going Out (1-5)" required>
-
-            <button type="submit">Predict</button>
+   
         </form>
 
-        {% if submitted %}
-        <div class="result">
-            <h3>Prediction: {{ prediction }}</h3>
-            <p>Status: {{ status }}</p>
-            <p>{{ suggestion }}</p>
-            <p><b>Accuracy:</b> {{ accuracy }}</p>
-        </div>
-        {% endif %}
-
-    </div>
-
-    <!-- RIGHT SIDE -->
-    <div class="chart-box">
-        <h2>Performance Chart</h2>
-        <img src="data:image/png;base64,{{ chart }}" width="100%">
-    </div>
-
-</div>
-
-</body>
-</html>
