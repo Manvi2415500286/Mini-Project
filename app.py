@@ -15,7 +15,7 @@ users = {}
 # Load model
 model = joblib.load("student_model.pkl")
 
-# Accuracy (update from model.py output)
+# Accuracy
 accuracy = 0.82
 
 
@@ -26,7 +26,8 @@ def generate_chart(studytime=None, grade=None):
     plt.figure(figsize=(8,5))
     plt.scatter(data["studytime"], data["G3"], label="Existing Students")
 
-    if studytime and grade:
+    # ✅ FIXED CONDITION
+    if studytime is not None and grade is not None:
         plt.scatter(studytime, grade, color="red", s=100)
 
     plt.xlabel("Study Time")
@@ -44,7 +45,7 @@ def generate_chart(studytime=None, grade=None):
     return chart
 
 
-# Routes
+# HOME
 @app.route("/")
 def start():
     return render_template("home.html")
@@ -54,22 +55,26 @@ def start():
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     message = None
-    success = None
 
     if request.method == "POST":
         username = request.form["username"].strip()
         password = request.form["password"].strip()
+        confirm = request.form["confirm_password"].strip()
 
-        # Check if user exists
-        if username in users:
-            message = "⚠️ User already exists!"
+        # ✅ CHECK PASSWORD MATCH
+        if password != confirm:
+            message = "Passwords do not match!"
+
+        # ✅ CHECK DUPLICATE USER
+        elif username in users:
+            message = "User already exists!"
+
         else:
             users[username] = password
-            session["signed_up"] = True
-
             return redirect(url_for("login"))
 
-    return render_template("signup.html", message=message, success=success)
+    return render_template("signup.html", message=message)
+
 
 # LOGIN
 @app.route("/login", methods=["GET", "POST"])
@@ -77,14 +82,14 @@ def login():
     error = None
 
     if request.method == "POST":
-        username = request.form["username"]
-        password = request.form["password"]
+        username = request.form["username"].strip()
+        password = request.form["password"].strip()
 
         if username in users and users[username] == password:
             session["user"] = username
             return redirect(url_for("predict"))
         else:
-            error = "Invalid Credentials"
+            error = "Invalid username or password"
 
     return render_template("login.html", error=error)
 
@@ -93,24 +98,14 @@ def login():
 @app.route("/logout")
 def logout():
     session.clear()
-    return redirect(url_for("login.html"))
+    return redirect(url_for("login"))   # ✅ FIXED
 
 
-# HOME PAGE
-@app.route("/home")
-def homepage():
-    return render_template("home.html")
-
-
-# PREDICTION PAGE
+# PREDICT
 @app.route("/predict", methods=["GET", "POST"])
 def predict():
 
-    # If not signed up → go to signup
-    if "signed_up" not in session:
-        return redirect(url_for("signup"))
-
-    # If signed up but not logged in → login
+    # ✅ ONLY CHECK LOGIN (remove signed_up logic)
     if "user" not in session:
         return redirect(url_for("login"))
 
