@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Student AI</title>
+
+```
+<style>
+    /* RESET (fix white margin) */
+    html, body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        font-family: Arial, sans-serif;
+    }
+
+    /* NAVBAR */
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: 12px 25px;
+        background: rgba(0,0,0,0.8);
+        color: white;
+
+        box-sizing: border-box;
+        z-index: 1000;
+    }
+
+    .navbar a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* RIGHT MENU FIX */
+    .menu {
+        display: flex;
+        gap: 20px;
+    }
+
+    /* HERO */
+    .hero {
+        height: 100vh;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+
+        background-image: url("https://images.unsplash.com/photo-1509062522246-3755977927d7");
+        background-size: cover;
+        background-position: center;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* CENTER TEXT BOX */
+    .box {
+        background: rgba(0,0,0,0.7);
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+        color: white;
+
+        width: 60%;
+        max-width: 600px;
+    }
+
+    .box h1 {
+        margin: 0;
+        font-size: 34px;
+    }
+
+    .box p {
+        margin-top: 10px;
+        font-size: 18px;
+    }
+
+    /* CTA */
+    .cta {
+        background: #5fa8d3;
+        text-align: center;
+        padding: 20px;
+        color: white;
+    }
+
+    .cta a {
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .cta a:hover {
+        color: yellow;
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+    <div><b>SPS - Student AI</b></div>
+
+```
+<div class="menu">
+    <a href="/">Home</a>
+    <a href="/predict">Predict</a>
+    <a href="/signup">Signup</a>
+    <a href="/login">Login</a>
+</div>
+```
+
+</div>
+
+<!-- HERO -->
+
+<div class="hero">
+    <div class="box">
+        <h1>AI-Based Student Performance System</h1>
+        <p>Predict academic performance using Machine Learning</p>
+    </div>
+</div>
+
+<!-- CTA -->
+
+<div class="cta">
+    <a href="/signup">Click here to sign up for a free demo!</a>
+</div>
+
+</body>
+</html>
