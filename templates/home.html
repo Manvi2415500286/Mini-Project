@@ -1,112 +1,130 @@
 <!DOCTYPE html>
+
 <html>
 <head>
-    <title>Home</title>
-</head>
+    <title>Student Performance System</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial;
-            background: #f5f5f5;
-        }
+```
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
 
-        /* NAVBAR */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 40px;
-            background: #1f2d3d;
-            color: white;
-        }
+    /* NAVBAR */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 40px;
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        position: fixed;
+        width: 100%;
+        z-index: 10;
+    }
 
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-        }
+    .navbar a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: bold;
+    }
 
-        .navbar a:hover {
-            text-decoration: underline;
-        }
+    .navbar a:hover {
+        color: #ff5a5f;
+    }
 
-        /* HERO SECTION */
-        .hero {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 60px;
-            background: white;
-        }
+    /* HERO SECTION */
+    .hero {
+        height: 100vh;
+        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                    url("https://images.unsplash.com/photo-1509062522246-3755977927d7");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+    }
 
-        .hero-text {
-            width: 50%;
-        }
+    .hero h1 {
+        font-size: 45px;
+    }
 
-        .hero-text h1 {
-            font-size: 40px;
-            margin-bottom: 15px;
-        }
+    .hero p {
+        font-size: 18px;
+        margin: 15px 0;
+    }
 
-        .hero-text p {
-            color: gray;
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
+    .hero button {
+        padding: 12px 25px;
+        background: #ff5a5f;
+        border: none;
+        color: white;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 
-        .hero button {
-            padding: 12px 25px;
-            background: #ff5a5f;
-            border: none;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
+    .hero button:hover {
+        background: #e04e50;
+    }
 
-        .hero button:hover {
-            background: #e0484d;
-        }
+    /* CTA SECTION */
+    .cta {
+        background: #5fa8d3;
+        text-align: center;
+        padding: 30px;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+    }
 
-        .hero img {
-            width: 45%;
-            border-radius: 10px;
-        }
-    </style>
+    .cta a {
+        color: white;
+        text-decoration: underline;
+    }
+</style>
+```
+
 </head>
 
 <body>
 
 <!-- NAVBAR -->
-<div class="navbar">
-    <div><b>🎓 Student AI</b></div>
 
+<div class="navbar">
+    <div><b>SPS - Student AI</b></div>
     <div>
-        <a href="/home">Home</a>
+        <a href="/">Home</a>
         <a href="/predict">Predict</a>
         <a href="/signup">Signup</a>
         <a href="/login">Login</a>
-        <a href="/logout">Logout</a>
     </div>
 </div>
 
-<!-- HERO SECTION -->
+<!-- HERO -->
+
 <div class="hero">
-
-    <div class="hero-text">
+    <div>
         <h1>AI-Based Student Performance System</h1>
+        <p>Predict academic performance and improve student success using Machine Learning</p>
 
-        <p>
-            Predict student academic performance using machine learning 
-            and take early action to improve results.
-        </p>
+```
+    <a href="/predict">
+        <button>Check Prediction</button>
+    </a>
+</div>
+```
 
-        <a href="/predict">
-            <button>Check Prediction</button>
-        </a>
-    </div>
+</div>
 
-    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
+<!-- CTA -->
+
+<div class="cta">
+    <a href="/signup">Click here to sign up for a free demo!</a>
 </div>
 
 </body>
