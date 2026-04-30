@@ -5,6 +5,13 @@
     <title>Student AI</title>
 
 ```
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Student AI</title>
+
+```
 <style>
     body {
         margin: 0;
@@ -15,22 +22,31 @@
     .navbar {
         position: fixed;
         top: 0;
+        left: 0;
         width: 100%;
         background: black;
         color: white;
-        padding: 15px;
 
         display: flex;
         justify-content: space-between;
+        align-items: center;
+
+        padding: 15px 30px;
+        box-sizing: border-box;
     }
 
     .navbar a {
         color: white;
         text-decoration: none;
-        margin-left: 15px;
+        margin-left: 20px;
+        font-weight: bold;
     }
 
-    /* HERO */
+    .navbar a:hover {
+        color: #ff5a5f;
+    }
+
+    /* HERO SECTION */
     .hero {
         height: 100vh;
         background-image: url("https://images.unsplash.com/photo-1509062522246-3755977927d7");
@@ -40,17 +56,30 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        text-align: center;
-        color: white;
 
-        padding-top: 60px; /* space for navbar */
+        padding-top: 70px; /* prevent navbar overlap */
     }
 
     /* TEXT BOX */
     .box {
-        background: rgba(0,0,0,0.5);
-        padding: 20px;
+        background: rgba(0, 0, 0, 0.7);  /* darker for clear text */
+        padding: 30px;
         border-radius: 10px;
+        text-align: center;
+        color: white;
+
+        width: 60%;
+        max-width: 600px;
+    }
+
+    .box h1 {
+        margin: 0;
+        font-size: 34px;
+    }
+
+    .box p {
+        margin-top: 10px;
+        font-size: 18px;
     }
 
     /* CTA */
@@ -63,9 +92,49 @@
 
     .cta a {
         color: white;
+        font-size: 18px;
         font-weight: bold;
     }
+
+    .cta a:hover {
+        color: yellow;
+    }
+
 </style>
+```
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+    <div><b>Student AI</b></div>
+    <div>
+        <a href="/">Home</a>
+        <a href="/signup">Signup</a>
+    </div>
+</div>
+
+<!-- HERO -->
+
+<div class="hero">
+    <div class="box">
+        <h1>AI-Based Student Performance System</h1>
+        <p>Predict academic performance using Machine Learning</p>
+    </div>
+</div>
+
+<!-- CTA -->
+
+<div class="cta">
+    <a href="/signup">Click here to sign up for a free demo!</a>
+</div>
+
+</body>
+</html>
+
 ```
 
 </head>
