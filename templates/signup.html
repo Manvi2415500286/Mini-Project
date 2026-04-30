@@ -1,67 +1,99 @@
 <!DOCTYPE html>
+
 <html>
 <head>
     <title>Signup</title>
 
-    <style>
-        body {
-            font-family: Arial;
-            background: linear-gradient(to right, #667eea, #764ba2);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
 
-        .box {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            width: 300px;
-            text-align: center;
-        }
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f3f4f6;
+    }
 
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-        }
+    /* CENTER BOX */
+    .container {
+        width: 350px;
+        margin: 80px auto;
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
 
-        button {
-            width: 100%;
-            padding: 10px;
-            background: #667eea;
-            color: white;
-            border: none;
-        }
+    .logo {
+        font-size: 26px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
 
-        .error {
-            color: red;
-        }
-    </style>
+    /* INPUT FIELDS */
+    input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    /* BUTTON */
+    .btn {
+        width: 100%;
+        padding: 10px;
+        background: #334155;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        margin-top: 10px;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background: #1e293b;
+    }
+
+    .link {
+        margin-top: 15px;
+        font-size: 14px;
+    }
+
+    .link a {
+        text-decoration: none;
+        color: #06b6d4;
+    }
+
+</style>
+
+
 </head>
 
 <body>
 
-<div class="box">
-    <h2>📝 Signup</h2>
+<div class="container">
 
-    <form method="POST">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
+<div class="logo">🎓 Student AI</div>
 
-        <button type="submit">Signup</button>
-    </form>
+<form method="POST" action="/signup">
 
-    {% if message %}
-         <p style="color:red;">{{ message }}</p>
-    {% endif %}
+    <input type="text" name="username" placeholder="Username" required>
 
-    {% if success %}
-         <p style="color:green;">{{ success }}</p>
-    {% endif %}
+    <input type="password" name="password" placeholder="Password" required>
 
-    <p>Already have account? <a href="/login">Login</a></p>
+    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+
+    <input type="email" name="email" placeholder="E-mail address" required>
+
+    <button class="btn">Sign Up</button>
+
+</form>
+
+<div class="link">
+    Already have an account? <a href="/login">Log In</a>
+</div>
+
+
 </div>
 
 </body>
