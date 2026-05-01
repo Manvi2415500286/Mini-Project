@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title>Prediction</title>
+    <title>Dashboard</title>
 
 ```
 <style>
@@ -13,35 +13,42 @@
         color: white;
     }
 
-    /* MAIN LAYOUT */
-    .wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        gap: 30px;
-        margin: 60px;
-        flex-wrap: wrap; /* responsive */
+    /* SIDEBAR */
+    .sidebar {
+        width: 200px;
+        height: 100vh;
+        background: #111827;
+        position: fixed;
+        padding: 20px;
     }
 
-    /* LEFT SIDE (FORM) */
-    .left {
-        width: 400px;
-        background: #1e293b;
-        padding: 30px;
-        border-radius: 10px;
+    .sidebar h2 {
+        margin-bottom: 30px;
     }
 
-    /* RIGHT SIDE (CHART) */
-    .right {
+    .sidebar a {
+        display: block;
+        color: white;
+        text-decoration: none;
+        margin: 15px 0;
+    }
+
+    .sidebar a:hover {
+        color: #06b6d4;
+    }
+
+    /* MAIN AREA */
+    .main {
+        margin-left: 220px;
+        padding: 20px;
+    }
+
+    /* FORM BOX */
+    .form-box {
         width: 400px;
         background: #1e293b;
         padding: 20px;
         border-radius: 10px;
-        text-align: center;
-    }
-
-    h2 {
-        text-align: center;
     }
 
     input {
@@ -84,18 +91,32 @@
         background: #0891b2;
     }
 
-    .result {
+    /* CARDS */
+    .cards {
         margin-top: 20px;
+    }
+
+    .card {
+        display: inline-block;
+        background: #1e293b;
         padding: 15px;
-        background: #334155;
-        border-radius: 8px;
+        border-radius: 10px;
+        margin-right: 10px;
+        min-width: 120px;
         text-align: center;
     }
 
-    .right img {
+    /* CHART */
+    .chart {
+        margin-top: 20px;
+        background: #1e293b;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .chart img {
         width: 100%;
         border-radius: 10px;
-        margin-top: 10px;
     }
 
 </style>
@@ -105,13 +126,28 @@
 
 <body>
 
-<div class="wrapper">
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+    <h2>🎓 Student AI</h2>
 
 ```
-<!-- LEFT SIDE -->
-<div class="left">
+<a href="/">Home</a>
+<a href="/predict">Predict</a>
+<a href="/logout">Logout</a>
+```
 
-    <h2>Student Performance Prediction</h2>
+</div>
+
+<!-- MAIN -->
+
+<div class="main">
+
+```
+<h2>Student Performance Dashboard</h2>
+
+<!-- FORM -->
+<div class="form-box">
 
     <form method="POST">
 
@@ -145,24 +181,34 @@
 
     </form>
 
-    {% if submitted %}
-    <div class="result">
-        <h3>Predicted Grade: {{ prediction }}</h3>
-        <p>Status: {{ status }}</p>
-        <p>Suggestion: {{ suggestion }}</p>
-    </div>
-    {% endif %}
-
 </div>
 
-<!-- RIGHT SIDE -->
-<div class="right">
+<!-- RESULT CARDS -->
+{% if submitted %}
+<div class="cards">
+    <div class="card">
+        <h3>Grade</h3>
+        <p>{{ prediction }}</p>
+    </div>
+
+    <div class="card">
+        <h3>Status</h3>
+        <p>{{ status }}</p>
+    </div>
+
+    <div class="card">
+        <h3>Accuracy</h3>
+        <p>{{ accuracy }}</p>
+    </div>
+</div>
+{% endif %}
+
+<!-- CHART -->
+<div class="chart">
     <h3>Performance Chart</h3>
 
     {% if chart %}
         <img src="data:image/png;base64,{{ chart }}">
-    {% else %}
-        <p>No chart available</p>
     {% endif %}
 </div>
 ```
@@ -171,3 +217,4 @@
 
 </body>
 </html>
+
