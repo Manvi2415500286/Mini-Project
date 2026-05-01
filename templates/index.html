@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Prediction</title>
+
+```
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #0f172a;
+        color: white;
+    }
+
+    /* MAIN LAYOUT */
+    .wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 30px;
+        margin: 60px;
+        flex-wrap: wrap; /* responsive */
+    }
+
+    /* LEFT SIDE (FORM) */
+    .left {
+        width: 400px;
+        background: #1e293b;
+        padding: 30px;
+        border-radius: 10px;
+    }
+
+    /* RIGHT SIDE (CHART) */
+    .right {
+        width: 400px;
+        background: #1e293b;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 5px;
+    }
+
+    input:focus {
+        outline: none;
+        box-shadow: 0 0 5px #06b6d4;
+    }
+
+    label {
+        display: block;
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
+    .hint {
+        font-size: 12px;
+        color: #cbd5e1;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 12px;
+        margin-top: 15px;
+        background: #06b6d4;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background: #0891b2;
+    }
+
+    .result {
+        margin-top: 20px;
+        padding: 15px;
+        background: #334155;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    .right img {
+        width: 100%;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+```
+<!-- LEFT SIDE -->
+<div class="left">
+
+    <h2>Student Performance Prediction</h2>
+
+    <form method="POST">
+
+        <label>Study Time</label>
+        <input type="number" name="studytime" required>
+
+        <label>Failures</label>
+        <input type="number" name="failures" required>
+
+        <label>Absences</label>
+        <input type="number" name="absences" required>
+
+        <label>G1 (First Test Marks)</label>
+        <small class="hint">Marks obtained in first exam</small>
+        <input type="number" name="G1" required>
+
+        <label>G2 (Second Test Marks)</label>
+        <small class="hint">Marks obtained in second exam</small>
+        <input type="number" name="G2" required>
+
+        <label>Health</label>
+        <input type="number" name="health" required>
+
+        <label>Free Time</label>
+        <input type="number" name="freetime" required>
+
+        <label>Going Out</label>
+        <input type="number" name="goout" required>
+
+        <button class="btn">Predict</button>
+
+    </form>
+
+    {% if submitted %}
+    <div class="result">
+        <h3>Predicted Grade: {{ prediction }}</h3>
+        <p>Status: {{ status }}</p>
+        <p>Suggestion: {{ suggestion }}</p>
+    </div>
+    {% endif %}
+
+</div>
+
+<!-- RIGHT SIDE -->
+<div class="right">
+    <h3>Performance Chart</h3>
+
+    {% if chart %}
+        <img src="data:image/png;base64,{{ chart }}">
+    {% else %}
+        <p>No chart available</p>
+    {% endif %}
+</div>
+```
+
+</div>
+
+</body>
+</html>
