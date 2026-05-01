@@ -124,11 +124,9 @@ def predict():
         absences = float(request.form["absences"])
         G1 = float(request.form["G1"])
         G2 = float(request.form["G2"])
-        health = float(request.form["health"])
-        freetime = float(request.form["freetime"])
-        goout = float(request.form["goout"])
+        
 
-        features = np.array([[studytime, failures, absences, G1, G2, health, freetime, goout]])
+        features = np.array([[studytime, failures, absences, G1, G2]])
 
         result = model.predict(features)[0]
         prediction = round(result, 2)
@@ -157,4 +155,4 @@ def predict():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=10000)

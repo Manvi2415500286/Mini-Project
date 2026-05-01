@@ -13,7 +13,7 @@ data = pd.read_csv("student-mat.csv", sep=";")
 data = data[data["absences"] < 30]
 
 # Features and target
-X = data[['studytime','failures','absences','G1','G2','health','freetime','goout']]
+X = data[['studytime','failures','absences','G1','G2']]
 y = data['G3']
 
 # Split dataset
